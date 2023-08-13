@@ -10,12 +10,14 @@ package ec.edu.espol.vehitrade;
  */
 
 import java.io.File;
+import java.io.Serializable;
 
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Vendedor extends Usuario{
+public class Vendedor extends Usuario implements Serializable{
     private ArrayList<Vehiculo> vehiculos;
+    private static final long serialVersionUID = 8799656478674716638L;
 
     public ArrayList<Vehiculo> getVehiculos() {
         return vehiculos;
@@ -28,28 +30,28 @@ public class Vendedor extends Usuario{
     }
     
     
-//    public static void registroNuevo(){
-//        Scanner sc = new Scanner(System.in);
-//        
-//        System.out.println("Ingrese correo electrónico: ");
-//        String cE= sc.nextLine();
-//        System.out.println("Ingrese clave: ");
-//        String key= sc.nextLine();
-//        System.out.println("Ingrese nombres: ");
-//        String nom= sc.nextLine();
-//        System.out.println("Ingrese apellidos: ");
-//        String apellido= sc.nextLine();
-//        System.out.println("Ingrese organización: ");
-//        String org= sc.nextLine();
-//        int i= Utilitaria.nextId("Vendedor.txt");
-//        if (Vendedor.buscarClave("Vendedor.txt", cE).equals("")){
-//            Vendedor v= new Vendedor(i,nom,apellido,org,cE,key);
-//            v.saveFile("Vendedor.txt");
-//        }
-//        else{
-//            System.out.println("Ese correo ya existe no se puede registar");
-//        } 
-//    }
+    public static void registroNuevo(){
+        Scanner sc = new Scanner(System.in);
+        
+        System.out.println("Ingrese correo electrónico: ");
+        String cE= sc.nextLine();
+        System.out.println("Ingrese clave: ");
+        String key= sc.nextLine();
+        System.out.println("Ingrese nombres: ");
+        String nom= sc.nextLine();
+        System.out.println("Ingrese apellidos: ");
+        String apellido= sc.nextLine();
+        System.out.println("Ingrese organización: ");
+        String org= sc.nextLine();
+        int i= Utilitaria.nextId("Vendedor.txt");
+        if (Vendedor.buscarClave("Vendedor.txt", cE).equals("")){
+            Vendedor v= new Vendedor(i,nom,apellido,org,cE,key);
+            v.saveFile("Vendedor.txt");
+        }
+        else{
+            System.out.println("Ese correo ya existe no se puede registar");
+        } 
+    }
 //
 //    
 //    public static ArrayList<Vehiculo> searchByIDS(int idVendedor){ 
@@ -64,34 +66,34 @@ public class Vendedor extends Usuario{
 //        return nuevaL;
 //    }
 //    
-//    public static ArrayList<Vendedor> readFile(String nombreArchivo){
-//        ArrayList<Vendedor> lV= new ArrayList<>();
-//        try(Scanner sc= new Scanner(new File(nombreArchivo))){
-//            while(sc.hasNextLine()){
-//                String linea= sc.nextLine();
-//                String[] el=linea.split("\\|");
-//                Vendedor vende= new Vendedor(Integer.parseInt(el[0]),el[1],el[2],el[3],el[4],el[5]);    
-//                lV.add(vende);
-//            }
-//        }
-//        catch(Exception e){
-//          
-//        }
-//        return lV;
-//    }
+    public static ArrayList<Vendedor> readFile(String nombreArchivo){
+        ArrayList<Vendedor> lV= new ArrayList<>();
+        try(Scanner sc= new Scanner(new File(nombreArchivo))){
+            while(sc.hasNextLine()){
+                String linea= sc.nextLine();
+                String[] el=linea.split("\\|");
+                Vendedor vende= new Vendedor(Integer.parseInt(el[0]),el[1],el[2],el[3],el[4],el[5]);    
+                lV.add(vende);
+            }
+        }
+        catch(Exception e){
+          
+        }
+        return lV;
+    }
 //    
-//    public static String buscarClave(String nombreArchivo,String correoElectronico){
-//        ArrayList<Vendedor> lV= Vendedor.readFile(nombreArchivo);
-//        String key = "";
-//
-//        for (Vendedor v:lV){
-//
-//            if (v.getCorreoElectronico().equals(correoElectronico))
-//                key = v.getClave();
-//
-//        }
-//        return key;
-//    }
+    public static String buscarClave(String nombreArchivo,String correoElectronico){
+        ArrayList<Vendedor> lV= Vendedor.readFile(nombreArchivo);
+        String key = "";
+
+        for (Vendedor v:lV){
+
+            if (v.getCorreoElectronico().equals(correoElectronico))
+                key = v.getClave();
+
+        }
+        return key;
+    }
 
 //    public static void registrarNuevoVehiculo(){
 //       Scanner sc= new Scanner(System.in);

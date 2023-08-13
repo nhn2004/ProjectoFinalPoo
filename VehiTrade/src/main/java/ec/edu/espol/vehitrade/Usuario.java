@@ -7,13 +7,16 @@ package ec.edu.espol.vehitrade;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.PrintWriter;
+import java.io.Serializable;
+import java.util.ArrayList;
 
 
 /**
  *
  * @author HP
  */
-public class Usuario implements Saveable {
+public class Usuario implements Saveable,Serializable {
+    private static final long serialVersionUID = 8799656478674716638L;
     private int id;
     private String nombre;
     private String apellidos;
@@ -89,5 +92,45 @@ public class Usuario implements Saveable {
           }
 
     }
-  
+    
+    public static void saveListSer(String nomArchivo,ArrayList<Usuario> lista){
+        
+    }
+    public static ArrayList<Usuario> readListSer(String nomArchivo){
+        return new ArrayList<>();
+    }
+    public static boolean validarUsuario(ArrayList<Usuario> lista,String correo,String contraseña){
+        boolean validacionCorreo= false;
+        boolean validacionClave= false;
+        for (Usuario u:lista){
+            if (u.getCorreoElectronico().equals(correo)){
+                validacionCorreo=true;
+                String clave=Usuario.buscarClave("UsuarioSer.txt", correo);
+                if (clave.equals(contraseña)){
+                    validacionClave=true;
+                } else {
+                    //Excepcion Contraseña INcorrecta
+                }
+            } else {
+                //Excepcion Usuario no existe
+            }
+        }
+
+        return validacionCorreo&&validacionClave;
+    }
+    
+    
+    
+     public static String buscarClave(String nombreArchivo,String correoElectronico){
+        ArrayList<Usuario> l= Usuario.readListSer(nombreArchivo);
+        String key = "";
+
+        for (Usuario u:l){
+
+            if (u.getCorreoElectronico().equals(correoElectronico))
+                key = u.getClave();
+
+        }
+        return key;
+    }
 }

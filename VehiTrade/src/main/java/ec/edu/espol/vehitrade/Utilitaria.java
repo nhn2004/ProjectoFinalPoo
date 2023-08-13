@@ -29,18 +29,18 @@ import java.util.Scanner;
  */
 class Utilitaria {
 //    
-//    public static int nextId(String nombreArchivo){
-//        int id=0;
-//        try(Scanner sc= new Scanner(new  File(nombreArchivo))){
-//            while(sc.hasNextLine()){
-//              String linea=sc.nextLine();
-//              String[] elementos=linea.split("\\|");
-//              id=Integer.parseInt(elementos[0]);
-//            }
-//        } catch (Exception e){
-//        }
-//        return id+1;
-//     }
+    public static int nextId(String nombreArchivo){
+        int id=0;
+        try(Scanner sc= new Scanner(new  File(nombreArchivo))){
+            while(sc.hasNextLine()){
+              String linea=sc.nextLine();
+              String[] elementos=linea.split("\\|");
+              id=Integer.parseInt(elementos[0]);
+            }
+        } catch (Exception e){
+        }
+        return id+1;
+     }
 //    
 //    public static String generarHash(String input) {
 //        try{

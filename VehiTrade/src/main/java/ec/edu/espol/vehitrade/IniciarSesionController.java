@@ -6,6 +6,7 @@ package ec.edu.espol.vehitrade;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -29,7 +30,7 @@ public class IniciarSesionController implements Initializable {
     private Button ingresar;
     @FXML
     private Button regresar;
-
+    private ArrayList<Usuario> lista;
     /**
      * Initializes the controller class.
      */
@@ -40,6 +41,7 @@ public class IniciarSesionController implements Initializable {
 
     @FXML
     private void verificar(MouseEvent event) {
+        
     }
 
     @FXML
@@ -49,6 +51,7 @@ public class IniciarSesionController implements Initializable {
 
     @FXML
     private void ingresarDatos(MouseEvent event) {
+        
     }
 
     @FXML
@@ -56,4 +59,7 @@ public class IniciarSesionController implements Initializable {
         App.setRoot("inicio");
     }
     
+    private void setLista(ArrayList<Usuario> lista){
+        this.lista=lista;
+    }
 }

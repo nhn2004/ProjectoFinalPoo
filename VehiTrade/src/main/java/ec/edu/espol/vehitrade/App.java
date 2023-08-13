@@ -7,6 +7,8 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.lang.ModuleLayer.Controller;
+import java.util.ArrayList;
 
 /**
  * JavaFX App
@@ -34,5 +36,11 @@ public class App extends Application {
     public static void main(String[] args) {
         launch();
     }
-
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("tu_archivo.fxml"));
+        Parent root = loader.load();
+        
+        Controller controller = loader.getController();
+        ArrayList<Usuario> users = new ArrayList<>(); // Aquí crea y llena tu ArrayList
+        
+    
 }
