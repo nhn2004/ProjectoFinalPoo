@@ -20,8 +20,8 @@ import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Properties;
 import java.util.Scanner;
-import javax.mail.*;
-import javax.mail.internet.*;
+//import javax.mail.*;
+//import javax.mail.internet.*;
 
 /**
  *
@@ -329,37 +329,37 @@ class Utilitaria {
     
     
     
-    public static void enviarCorreo(String correoDestino, String asunto, String mensaje){
-        String correoEnvio = "nhncevallos@gmail.com";
-        String contraseña = "olbapqxbumuxutep";
-
-        Properties props = new Properties();
-        props.put("mail.smtp.host", "smtp.gmail.com");
-        props.put("mail.smtp.starttls.enable", "true");
-        props.put("mail.smtp.ssl.trust", "smtp.gmail.com");
-        props.put("mail.smtp.port", "587");
-        props.put("mail.smtp.auth", "true");
-        props.put("mail.smtp.starttls.enable", "true");
-
-        Session session = Session.getInstance(props, new Authenticator() {
-            @Override
-            protected PasswordAuthentication getPasswordAuthentication() {
-                return new PasswordAuthentication(correoEnvio, contraseña);
-            }
-        });
-
-        try {
-            
-            Message message = new MimeMessage(session);
-            message.setFrom(new InternetAddress(correoEnvio));
-            message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(correoDestino));
-            message.setSubject(asunto);
-            message.setText(mensaje);
-            
-            Transport.send(message);
-            System.out.println("Correo electrónico enviado exitosamente.");
-        } catch (MessagingException e) {
-            System.out.println("Error al enviar Correo");
-        }
-    }
+//    public static void enviarCorreo(String correoDestino, String asunto, String mensaje){
+//        String correoEnvio = "nhncevallos@gmail.com";
+//        String contraseña = "olbapqxbumuxutep";
+//
+//        Properties props = new Properties();
+//        props.put("mail.smtp.host", "smtp.gmail.com");
+//        props.put("mail.smtp.starttls.enable", "true");
+//        props.put("mail.smtp.ssl.trust", "smtp.gmail.com");
+//        props.put("mail.smtp.port", "587");
+//        props.put("mail.smtp.auth", "true");
+//        props.put("mail.smtp.starttls.enable", "true");
+//
+//        Session session = Session.getInstance(props, new Authenticator() {
+//            @Override
+//            protected PasswordAuthentication getPasswordAuthentication() {
+//                return new PasswordAuthentication(correoEnvio, contraseña);
+//            }
+//        });
+//
+//        try {
+//            
+//            Message message = new MimeMessage(session);
+//            message.setFrom(new InternetAddress(correoEnvio));
+//            message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(correoDestino));
+//            message.setSubject(asunto);
+//            message.setText(mensaje);
+//            
+//            Transport.send(message);
+//            System.out.println("Correo electrónico enviado exitosamente.");
+//        } catch (MessagingException e) {
+//            System.out.println("Error al enviar Correo");
+//        }
+//    }
 }
