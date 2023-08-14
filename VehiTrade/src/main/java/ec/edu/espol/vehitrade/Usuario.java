@@ -98,14 +98,14 @@ public class Usuario implements Saveable,Serializable {
     }
     
     public static void saveListSer(String nomArchivo,ArrayList<Usuario> lista){
-        try(ObjectOutputStream output= new ObjectOutputStream(new FileOutputStream("nomArchivo"));){
+        try(ObjectOutputStream output= new ObjectOutputStream(new FileOutputStream(nomArchivo));){
             output.writeObject(lista);
         } catch(IOException ioE){
         }
     }
     public static ArrayList<Usuario> readListSer(String nomArchivo){
         ArrayList<Usuario> lista= new ArrayList<>();
-        try(ObjectInputStream input= new ObjectInputStream(new FileInputStream("nomArchivo"));){
+        try(ObjectInputStream input= new ObjectInputStream(new FileInputStream(nomArchivo));){
             lista = (ArrayList<Usuario>)input.readObject();
         } catch(IOException ioE){
             
@@ -114,14 +114,15 @@ public class Usuario implements Saveable,Serializable {
         }
         return lista;
     }
-    public static boolean validarUsuario(ArrayList<Usuario> lista,String correo,String contraseña){
+    public static boolean validarUsuario(String correo,String contraseña){
+        ArrayList<Usuario> lista = Usuario.readListSer("UsuarioSer.txt");
         boolean validacionCorreo= false;
         boolean validacionClave= false;
         for (Usuario u:lista){
             if (u.getCorreoElectronico().equals(correo)){
                 validacionCorreo=true;
-                String clave=Usuario.buscarClave("UsuarioSer.txt", correo);
-                if (clave.equals(contraseña)){
+//                String clave=Usuario.buscarClave("UsuarioSer.txt", correo);
+                if (u.getClave().equals(contraseña)){
                     validacionClave=true;
                 }
             }

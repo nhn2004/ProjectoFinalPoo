@@ -31,7 +31,6 @@ public class IniciarSesionController implements Initializable {
     private Button ingresar;
     @FXML
     private Button regresar;
-    private ArrayList<Usuario> lista;
     /**
      * Initializes the controller class.
      */
@@ -42,16 +41,17 @@ public class IniciarSesionController implements Initializable {
 
     @FXML
     private void verificar(MouseEvent event) {
-        if(Usuario.validarUsuario(lista, correo.toString(), contraseña.toString())){
+        
+        if(Usuario.validarUsuario( correo.getText(), contraseña.getText())){
             Alert a= new Alert(Alert.AlertType.INFORMATION,"Usuario Correcto");
             a.show();
         } else {
+            
             Alert a= new Alert(Alert.AlertType.ERROR,"Usuario Incorrecto");
             a.show();
         }
     }
 
-    @FXML
     private void switchToPaginaPrincipal(ActionEvent event) throws IOException {
         App.setRoot("inicio");
     }
@@ -62,11 +62,6 @@ public class IniciarSesionController implements Initializable {
     }
 
     @FXML
-    private void switchToInicio(ActionEvent event) throws IOException {
-        App.setRoot("inicio");
-    }
-    
-    public void setLista(ArrayList<Usuario> lista){
-        this.lista=lista;
+    private void switchToInicio(ActionEvent event) {
     }
 }

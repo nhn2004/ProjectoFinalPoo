@@ -40,9 +40,9 @@ public class App extends Application {
                 "ESPOL","clgal@espol.edu.ec","CarlosCarlos2004");
         Usuario u1= new Usuario(1,"Nahin Jaimito","Cevallos Tomala",
                 "ESPOL","ncevt@espol.edu.ec","JaimitoCev123");
-        Usuario u2= new Usuario(0,"Domenica Amy","Romero Piguave",
+        Usuario u2= new Usuario(2,"Domenica Amy","Romero Piguave",
                 "ESPOL","damr@espol.edu.ec","DomeDome2001");
-        Usuario u3= new Usuario(0,"Kenneth Josue","Echeverria Morales",
+        Usuario u3= new Usuario(3,"Kenneth Josue","Echeverria Morales",
                 "ESPOL","kjecheve@espol.edu.ec","Kjmorales");
         ArrayList<Usuario> lista= new ArrayList<>();
         lista.add(u);
@@ -51,8 +51,8 @@ public class App extends Application {
         lista.add(u3);
         System.out.println(lista);
         Usuario.saveListSer("UsuarioSer.txt", lista);
-        IniciarSesionController controlador= new IniciarSesionController();
-        controlador.setLista(lista);
+//        IniciarSesionController controlador= new IniciarSesionController();
+//        controlador.setLista(lista);
         
     }
         
