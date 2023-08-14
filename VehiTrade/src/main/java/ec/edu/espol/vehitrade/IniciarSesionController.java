@@ -47,7 +47,7 @@ public class IniciarSesionController implements Initializable {
             a.show();
         } else {
             
-            Alert a= new Alert(Alert.AlertType.ERROR,"Usuario Incorrecto");
+            Alert a= new Alert(Alert.AlertType.ERROR,"Usuario o contraseña Inválida");
             a.show();
         }
     }
