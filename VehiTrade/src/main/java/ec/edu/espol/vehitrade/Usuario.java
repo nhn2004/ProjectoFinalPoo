@@ -98,14 +98,14 @@ public class Usuario implements Saveable,Serializable {
     }
     
     public static void saveListSer(String nomArchivo,ArrayList<Usuario> lista){
-        try(ObjectOutputStream output= new ObjectOutputStream(new FileOutputStream("nomArchivo"));){
+        try(ObjectOutputStream output= new ObjectOutputStream(new FileOutputStream(nomArchivo));){
             output.writeObject(lista);
         } catch(IOException ioE){
         }
     }
     public static ArrayList<Usuario> readListSer(String nomArchivo){
         ArrayList<Usuario> lista= new ArrayList<>();
-        try(ObjectInputStream input= new ObjectInputStream(new FileInputStream("nomArchivo"));){
+        try(ObjectInputStream input= new ObjectInputStream(new FileInputStream(nomArchivo));){
             lista = (ArrayList<Usuario>)input.readObject();
         } catch(IOException ioE){
             

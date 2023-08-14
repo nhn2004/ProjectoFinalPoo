@@ -51,7 +51,6 @@ public class IniciarSesionController implements Initializable {
         }
     }
 
-    @FXML
     private void switchToPaginaPrincipal(ActionEvent event) throws IOException {
         App.setRoot("inicio");
     }

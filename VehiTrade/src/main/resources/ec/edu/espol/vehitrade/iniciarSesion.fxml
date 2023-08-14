@@ -48,14 +48,14 @@
                               <Font name="System Bold" size="16.0" />
                            </font>
                         </Label>
-                        <PasswordField fx:id="contraseña" />
+                        <PasswordField fx:id="contraseña" onAction="#switchToInicio" />
                      </children>
                   </VBox>
                </children>
             </VBox>
             <HBox alignment="CENTER" prefHeight="60.0" prefWidth="400.0">
                <children>
-                  <Button fx:id="ingresar" mnemonicParsing="false" onAction="#switchToPaginaPrincipal" onMouseClicked="#verificar" prefHeight="40.0" prefWidth="90.0" text="Ingresar">
+                  <Button fx:id="ingresar" mnemonicParsing="false" onMouseClicked="#verificar" prefHeight="40.0" prefWidth="90.0" text="Ingresar">
                      <font>
                         <Font size="17.0" />
                      </font>
