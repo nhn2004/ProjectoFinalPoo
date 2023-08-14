@@ -42,7 +42,7 @@ public class IniciarSesionController implements Initializable {
 
     @FXML
     private void verificar(MouseEvent event) {
-        if(Usuario.validarUsuario(lista, correo.toString(), contraseña.toString())){
+        if(Usuario.validarUsuario(lista, correo.getText(), contraseña.getText())){
             Alert a= new Alert(Alert.AlertType.INFORMATION,"Usuario Correcto");
             a.show();
         } else {
