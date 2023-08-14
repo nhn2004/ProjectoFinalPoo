@@ -59,7 +59,7 @@ public class IniciarSesionController implements Initializable {
         App.setRoot("inicio");
     }
     
-    private void setLista(ArrayList<Usuario> lista){
+    public void setLista(ArrayList<Usuario> lista){
         this.lista=lista;
     }
 }
