@@ -5,7 +5,11 @@
 package ec.edu.espol.vehitrade;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.PrintWriter;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -94,10 +98,21 @@ public class Usuario implements Saveable,Serializable {
     }
     
     public static void saveListSer(String nomArchivo,ArrayList<Usuario> lista){
-        
+        try(ObjectOutputStream output= new ObjectOutputStream(new FileOutputStream("nomArchivo"));){
+            output.writeObject(lista);
+        } catch(IOException ioE){
+        }
     }
     public static ArrayList<Usuario> readListSer(String nomArchivo){
-        return new ArrayList<>();
+        ArrayList<Usuario> lista= new ArrayList<>();
+        try(ObjectInputStream input= new ObjectInputStream(new FileInputStream("nomArchivo"));){
+            lista = (ArrayList<Usuario>)input.readObject();
+        } catch(IOException ioE){
+            
+        } catch (ClassNotFoundException cE){
+            
+        }
+        return lista;
     }
     public static boolean validarUsuario(ArrayList<Usuario> lista,String correo,String contraseña){
         boolean validacionCorreo= false;
@@ -108,11 +123,7 @@ public class Usuario implements Saveable,Serializable {
                 String clave=Usuario.buscarClave("UsuarioSer.txt", correo);
                 if (clave.equals(contraseña)){
                     validacionClave=true;
-                } else {
-                    //Excepcion Contraseña INcorrecta
                 }
-            } else {
-                //Excepcion Usuario no existe
             }
         }
 
