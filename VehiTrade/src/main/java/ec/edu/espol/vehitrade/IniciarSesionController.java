@@ -42,12 +42,12 @@ public class IniciarSesionController implements Initializable {
     @FXML
     private void verificar(MouseEvent event) {
         
-        if(Usuario.validarUsuario( correo.getText(), contraseña.getText())){
+        try {
+            Usuario u = Usuario.verificarUsuario( correo.getText(), contraseña.getText());
             Alert a= new Alert(Alert.AlertType.INFORMATION,"Usuario Correcto");
             a.show();
-        } else {
-            
-            Alert a= new Alert(Alert.AlertType.ERROR,"Usuario o contraseña Inválida");
+        } catch (DigitosInvalidos ex) {
+            Alert a= new Alert(Alert.AlertType.ERROR,ex.getMessage());
             a.show();
         }
     }

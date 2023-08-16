@@ -27,14 +27,19 @@ public class Usuario implements Saveable,Serializable {
     private String organizacion;
     private String correoElectronico;
     private String clave;
+    private ArrayList<Oferta> ofertas;
+    private ArrayList<Vehiculo> vehiculos;
     
-    public Usuario(int id, String nombre, String apellidos, String organizacion, String correoElectronico, String clave) {
-        this.id = id;
+    public Usuario(String nombre, String apellidos, String organizacion, String correoElectronico, String clave) {
+        this.id = Usuario.nextId();
         this.nombre = nombre;
         this.apellidos = apellidos;
         this.organizacion = organizacion;
         this.correoElectronico = correoElectronico;
         this.clave = clave;
+        this.ofertas = new ArrayList<>();
+        this.vehiculos = new ArrayList<>();
+        
     }
 
     public int getId() {
@@ -96,16 +101,15 @@ public class Usuario implements Saveable,Serializable {
           }
 
     }
-    
-    public static void saveListSer(String nomArchivo,ArrayList<Usuario> lista){
-        try(ObjectOutputStream output= new ObjectOutputStream(new FileOutputStream(nomArchivo));){
+    public static void saveListSer(ArrayList<Usuario> lista){
+        try(ObjectOutputStream output= new ObjectOutputStream(new FileOutputStream("UsuarioSer.txt"));){
             output.writeObject(lista);
         } catch(IOException ioE){
         }
     }
-    public static ArrayList<Usuario> readListSer(String nomArchivo){
+    public static ArrayList<Usuario> readListSer(){
         ArrayList<Usuario> lista= new ArrayList<>();
-        try(ObjectInputStream input= new ObjectInputStream(new FileInputStream(nomArchivo));){
+        try(ObjectInputStream input= new ObjectInputStream(new FileInputStream("UsuarioSer.txt"));){
             lista = (ArrayList<Usuario>)input.readObject();
         } catch(IOException ioE){
             
@@ -114,8 +118,17 @@ public class Usuario implements Saveable,Serializable {
         }
         return lista;
     }
+    public static Usuario verificarUsuario(String correo,String contraseña) throws DigitosInvalidos{
+        ArrayList<Usuario> lista = Usuario.readListSer();
+        for (Usuario u:lista){
+            if ((u.getCorreoElectronico().equals(correo))&&(u.getClave().equals(contraseña)))
+                return u;   
+        }
+        throw new DigitosInvalidos("Credenciales Incorrectas");
+    }
+    
     public static boolean validarUsuario(String correo,String contraseña){
-        ArrayList<Usuario> lista = Usuario.readListSer("UsuarioSer.txt");
+        ArrayList<Usuario> lista = Usuario.readListSer();
         boolean validacionCorreo= false;
         boolean validacionClave= false;
         for (Usuario u:lista){
@@ -133,8 +146,8 @@ public class Usuario implements Saveable,Serializable {
     
     
     
-     public static String buscarClave(String nombreArchivo,String correoElectronico){
-        ArrayList<Usuario> l= Usuario.readListSer(nombreArchivo);
+     public static String buscarClave(String correoElectronico){
+        ArrayList<Usuario> l= Usuario.readListSer();
         String key = "";
 
         for (Usuario u:l){
@@ -144,5 +157,11 @@ public class Usuario implements Saveable,Serializable {
 
         }
         return key;
+    }
+     
+    public static int nextId(){
+        int n = Usuario.readListSer().size();
+        
+        return n+1;
     }
 }
