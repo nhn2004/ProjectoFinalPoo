@@ -127,23 +127,23 @@ public class Usuario implements Saveable,Serializable {
         throw new DigitosInvalidos("Credenciales Incorrectas");
     }
     
-    public static boolean validarUsuario(String correo,String contraseña){
-        ArrayList<Usuario> lista = Usuario.readListSer();
-        boolean validacionCorreo= false;
-        boolean validacionClave= false;
-        for (Usuario u:lista){
-            if (u.getCorreoElectronico().equals(correo)){
-                validacionCorreo=true;
-//                String clave=Usuario.buscarClave("UsuarioSer.txt", correo);
-                if (u.getClave().equals(contraseña)){
-                    validacionClave=true;
-                }
-            }
-        }
-
-        return validacionCorreo&&validacionClave;
-    }
-    
+//    public static boolean validarUsuario(String correo,String contraseña){
+//        ArrayList<Usuario> lista = Usuario.readListSer();
+//        boolean validacionCorreo= false;
+//        boolean validacionClave= false;
+//        for (Usuario u:lista){
+//            if (u.getCorreoElectronico().equals(correo)){
+//                validacionCorreo=true;
+////                String clave=Usuario.buscarClave("UsuarioSer.txt", correo);
+//                if (u.getClave().equals(contraseña)){
+//                    validacionClave=true;
+//                }
+//            }
+//        }
+//
+//        return validacionCorreo&&validacionClave;
+//    }
+//    
     
     
      public static String buscarClave(String correoElectronico){
