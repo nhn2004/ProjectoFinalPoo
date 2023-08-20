@@ -4,6 +4,9 @@
  */
 package ec.edu.espol.vehitrade;
 
+import ec.edu.espol.vehitrade.App;
+import ec.edu.espol.vehitrade.DigitosInvalidos;
+import ec.edu.espol.vehitrade.Usuario;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -15,6 +18,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+
 
 /**
  * FXML Controller class
