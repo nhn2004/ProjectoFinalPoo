@@ -7,9 +7,14 @@ package ec.edu.espol.vehitrade;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ComboBox;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -17,14 +22,10 @@ import javafx.stage.Stage;
 /**
  * FXML Controller class
  *
- * @author Dom
+ * @author nicol
  */
-public class OpcionesController implements Initializable {
+public class PaginaUsuarioController implements Initializable {
 
-    /**
-     * Initializes the controller class.
-     */
-  
     private Usuario usuario;
     @FXML
     private Text nombre;
@@ -56,7 +57,7 @@ public class OpcionesController implements Initializable {
         SessionManager.getInstance().cerrarSesion();
         try {
             
-            App.setRoot("registrarVehiculo");
+            App.setRoot("iniciarSesion");
         } catch (IOException ex) {
             ex.printStackTrace();
            
@@ -95,7 +96,7 @@ public class OpcionesController implements Initializable {
         Stage stage = (Stage) nombre.getScene().getWindow();
         stage.setHeight(620);
         try {
-            App.setRoot("buscarVehiculo");
+            App.setRoot("comprarVehiculo");
         } catch (IOException ex) {
            
         }
@@ -105,15 +106,14 @@ public class OpcionesController implements Initializable {
 
     @FXML
     private void misOfertas(MouseEvent event) {
-//        try {
-//            App.setRoot("misOfertas");
-//        } catch (IOException ex) {
-//           
-//        }
+        try {
+            App.setRoot("misOfertas");
+        } catch (IOException ex) {
+           
+        }
     }  
 
     @FXML
     private void mostrarUsuario(MouseEvent event) {
-        Alert a = new Alert(Alert.AlertType.INFORMATION, usuario.toString());
     }
 }

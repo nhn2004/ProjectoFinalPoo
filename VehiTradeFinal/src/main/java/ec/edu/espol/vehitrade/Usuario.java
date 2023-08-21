@@ -4,25 +4,23 @@
  */
 package ec.edu.espol.vehitrade;
 
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.io.PrintWriter;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Iterator;
+import javafx.scene.control.Alert;
 
 
 /**
  *
  * @author HP
  */
-public class Usuario implements Saveable,Serializable {
-    private static final long serialVersionUID = 8799656478674716638L;
-    private int id;
+public class Usuario implements Serializable {
+    private final int id;
     private String nombre;
     private String apellidos;
     private String organizacion;
@@ -51,6 +49,14 @@ public class Usuario implements Saveable,Serializable {
     public String getNombre() {
         return nombre;
     }
+    
+    public void añadirVehiculo(Vehiculo v){
+        this.vehiculos.add(v);
+    }
+    
+    public void añadirOferta(Oferta o){
+        this.ofertas.add(o);
+    }
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
@@ -59,6 +65,24 @@ public class Usuario implements Saveable,Serializable {
     public String getApellidos() {
         return apellidos;
     }
+
+    public ArrayList<Oferta> getOfertas() {
+        return ofertas;
+    }
+
+    public void setOfertas(ArrayList<Oferta> ofertas) {
+        this.ofertas = ofertas;
+    }
+
+    public ArrayList<Vehiculo> getVehiculos() {
+        return vehiculos;
+    }
+
+    public void setVehiculos(ArrayList<Vehiculo> vehiculos) {
+        this.vehiculos = vehiculos;
+    }
+    
+    
 
     public void setApellidos(String apellidos) {
         this.apellidos = apellidos;
@@ -93,17 +117,13 @@ public class Usuario implements Saveable,Serializable {
         return this.id+"|"+this.nombre+"|"+this.apellidos+"|"+this.organizacion+"|"+this.correoElectronico+"|"+this.clave;
     }
     
-    @Override
-    public void saveFile(String nombreArchivo){
-        try(PrintWriter pw= new PrintWriter(new FileOutputStream(new File(nombreArchivo),true))){
-            pw.println(toString());  
-        } 
-        catch(Exception e){
-          }
+    public String datos(){
+        return this.nombre+"\n"+this.apellidos+"\n"+this.organizacion+"\n"+this.correoElectronico;
     }
 
+    
     public static void saveListSer(ArrayList<Usuario> lista){
-        try(ObjectOutputStream output= new ObjectOutputStream(new FileOutputStream("UsuarioSer.txt"));){
+        try(ObjectOutputStream output= new ObjectOutputStream(new FileOutputStream("UsuarioSer.txt"))){
             output.writeObject(lista);
         } catch(IOException ioE){
         }
@@ -112,59 +132,61 @@ public class Usuario implements Saveable,Serializable {
         ArrayList<Usuario> lista= new ArrayList<>();
         try(ObjectInputStream input= new ObjectInputStream(new FileInputStream("UsuarioSer.txt"));){
             lista = (ArrayList<Usuario>)input.readObject();
-        } catch(IOException ioE){
-            System.out.println("No se pudo abrir");
-        } catch (ClassNotFoundException ex) { 
-            System.out.println("No se encontró");
-        } 
-        return lista;
-    }   
-    
-    public static void saveUser(Usuario u){
-            ArrayList<Usuario> usuarios = Usuario.readListSer(); 
-            usuarios.add(u);
-            try(ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("UsuarioSer.txt"))){
-                out.writeObject(usuarios);
-            } catch(IOException e){ }
+        } catch(IOException | ClassNotFoundException ioE){
+            
         }
-    
-    
+        return lista;
+    }
     public static Usuario verificarUsuario(String correo,String contraseña) throws DigitosInvalidos{
         ArrayList<Usuario> lista = Usuario.readListSer();
+        Alert a = new Alert(Alert.AlertType.INFORMATION,lista.toString());
+        a.show();
         for (Usuario u:lista){
-            if ((u.getCorreoElectronico().equals(correo))&&(u.getClave().equals(contraseña)))
+            if ((u.getCorreoElectronico().equals(correo))&&(u.getClave().equals(contraseña))){
+                u.setVehiculos(u.vincularVehiculoUsuario());
+                u.setOfertas(u.vincularOfertaUsuario());
                 return u;   
+            }
         }
         throw new DigitosInvalidos("Credenciales Incorrectas");
     }
     
-     public  static boolean verificarCorreo(String correo) throws DigitosInvalidos{
+    public static void verificarCorreo(String correo) throws ObjetoExistente{
         ArrayList<Usuario> lista = Usuario.readListSer();
         for (Usuario u:lista){
-            if ((u.getCorreoElectronico().equals(correo)))
-                return true;   
-        }
-        throw new DigitosInvalidos("");
+            if ((u.getCorreoElectronico().equals(correo))){
+                   throw new ObjetoExistente("Correo ya Existente");
+            }
+        } 
     }
     
-    
-     public static String buscarClave(String correoElectronico){
-        ArrayList<Usuario> l= Usuario.readListSer();
-        String key = "";
-
-        for (Usuario u:l){
-
-            if (u.getCorreoElectronico().equals(correoElectronico))
-                key = u.getClave();
-
-        }
-        return key;
-    }
-     
     public static int nextId(){
         int n = Usuario.readListSer().size();
         
         return n+1;
+    }
+    
+    public ArrayList<Oferta> vincularOfertaUsuario(){
+        ArrayList<Oferta> off = Oferta.readListSer();
+        ArrayList<Oferta> fin = new ArrayList<>();
+        for (Oferta o: off){
+            if (o.getIdUsuario()== this.getId()){
+                fin.add(o);
+            }
+        }
+        return fin;
+    }
+    
+    public ArrayList<Vehiculo> vincularVehiculoUsuario(){
+        ArrayList<Vehiculo> veh = Vehiculo.readListSer();
+        ArrayList<Vehiculo> fin = new ArrayList<>();
+        for (Vehiculo v: veh){
+            if (v.getIdUsuario() == this.getId()){
+                v.setOfertas(v.vincularOfertasVehiculo());
+                fin.add(v);
+            }
+        }
+        return fin;
     }
     
     public void updateFile(){
@@ -178,5 +200,15 @@ public class Usuario implements Saveable,Serializable {
         }
         usuarios.add(this);
         Usuario.saveListSer(usuarios);
+    }
+
+    public void eliminarVehiculo(Vehiculo v){
+        this.vehiculos.remove(v);
+        
+    }
+    
+    public void eliminarOferta(Oferta o){
+        this.ofertas.remove(o);
+        
     }
 }

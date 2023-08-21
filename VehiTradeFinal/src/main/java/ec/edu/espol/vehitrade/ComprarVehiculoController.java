@@ -38,11 +38,11 @@ import javafx.util.Pair;
 /**
  * FXML Controller class
  *
- * @author Dom
+ * @author nicol
  */
-public class BuscarVehiculoController implements Initializable {
+public class ComprarVehiculoController implements Initializable {
+
     @FXML
-   
     private ComboBox<String> cbx;
     @FXML
     private CheckBox faño;
@@ -69,7 +69,7 @@ public class BuscarVehiculoController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        usuario= SessionManager.getInstance().getUsuarioActual();
+        usuario=SessionManager.getInstance().getUsuarioActual();
         vehiculos = Vehiculo.readListSer();
         // TODO
         faño.selectedProperty().addListener((observable, oldValue, newValue) -> {
@@ -101,7 +101,7 @@ public class BuscarVehiculoController implements Initializable {
         String[] categorias = {"Auto","Moto","Camioneta","Todos"};
         
         cbx.getItems().addAll(categorias);
-//        mostrarVehiculos(vehiculos);
+        mostrarVehiculos(vehiculos);
     }    
 
     @FXML
@@ -152,12 +152,12 @@ public class BuscarVehiculoController implements Initializable {
         mostrarVehiculos(veh);
     }
     private void mostrarDialogoRango(String titulo, double valorMinimoActual, double valorMaximoActual, BiConsumer<Double, Double> callback) {
-        // Crear el cuadro de diálogo
+        
         Dialog<Pair<String, String>> dialog = new Dialog<>();
         dialog.setTitle("Filtrar por " + titulo);
         dialog.setHeaderText("Ingrese el rango para " + titulo);
 
-        // Define los botones
+        
         ButtonType okButtonType = new ButtonType("OK", ButtonBar.ButtonData.OK_DONE);
         dialog.getDialogPane().getButtonTypes().addAll(okButtonType);
 
@@ -193,73 +193,73 @@ public class BuscarVehiculoController implements Initializable {
         });
     }
     
-    private void mostrarDialogoRango(String titulo, double valorMinimoActual, double valorMaximoActual, BiConsumer<Double, Double> callback) {
-        // Crear el cuadro de diálogo...
-        TextInputDialog dialog = new TextInputDialog(valorMinimoActual + "-" + valorMaximoActual);
-        dialog.setTitle("Filtrar por " + titulo);
-        dialog.setHeaderText("Ingrese el rango para " + titulo);
-        ButtonType okButtonType = new ButtonType("OK", ButtonBar.ButtonData.OK_DONE);
-
-        // Setea los botones al cuadro de diálogo
-        dialog.getDialogPane().getButtonTypes().addAll(okButtonType);
-
-        // Crear los campos de texto para min y max
-        TextField minTextField = new TextField(String.valueOf(valorMinimoActual));
-        TextField maxTextField = new TextField(String.valueOf(valorMaximoActual));
-
-        GridPane grid = new GridPane();
-        grid.setHgap(10);
-        grid.setVgap(10);
-        grid.add(new Label("Mínimo:"), 0, 0);
-        grid.add(minTextField, 1, 0);
-        grid.add(new Label("Máximo:"), 0, 1);
-        grid.add(maxTextField, 1, 1);
-
-        dialog.getDialogPane().setContent(grid);
-
-        // Convertir la entrada del usuario en un par de strings
-        dialog.setResultConverter(dialogButton -> {
-            if (dialogButton == okButtonType) {
-                return new Pair<>(minTextField.getText(), maxTextField.getText());
-            }
-            return null;
-        });
-
-        dialog.getDialogPane().setContent(grid);
-
-        // Obtiene los valores cuando se presiona "OK"
-        dialog.setResultConverter(dialogButton -> {
-            return new Pair<>(minTextField.getText(), maxTextField.getText());
-        });
-
-        // Muestra el cuadro de diálogo y procesa la respuesta
-        Optional<Pair<String, String>> result = dialog.showAndWait();
-
-        result.ifPresent(pair -> {
-            System.out.println("Min: " + pair.getKey() + ", Max: " + pair.getValue());
-            // Aquí puedes asignar los valores obtenidos a tus atributos minAño y maxAño, por ejemplo:
-            minAño = Integer.parseInt(pair.getKey());
-            maxAño = Integer.parseInt(pair.getValue());
-        });
-//        
-        dialog.setContentText("Min:");
-        dialog.setContentText("Max:");
-
-        Optional<String> result = dialog.showAndWait();
-        result.ifPresent(rango -> {
-            String[] valores = rango.split("-");
-            if (valores.length == 2) {
-                try {
-                    double min = Double.parseDouble(valores[0].trim());
-                    double max = Double.parseDouble(valores[1].trim());
-                    callback.accept(min, max);
-                } catch (NumberFormatException e) {
-                    Alert alert = new Alert(Alert.AlertType.ERROR, "Valores inválidos");
-                    alert.show();
-                }
-            }
-        });
-    }
+//    private void mostrarDialogoRango(String titulo, double valorMinimoActual, double valorMaximoActual, BiConsumer<Double, Double> callback) {
+//        // Crear el cuadro de diálogo...
+//        TextInputDialog dialog = new TextInputDialog(valorMinimoActual + "-" + valorMaximoActual);
+//        dialog.setTitle("Filtrar por " + titulo);
+//        dialog.setHeaderText("Ingrese el rango para " + titulo);
+//        ButtonType okButtonType = new ButtonType("OK", ButtonBar.ButtonData.OK_DONE);
+//
+//        // Setea los botones al cuadro de diálogo
+//        dialog.getDialogPane().getButtonTypes().addAll(okButtonType);
+//
+//        // Crear los campos de texto para min y max
+//        TextField minTextField = new TextField(String.valueOf(valorMinimoActual));
+//        TextField maxTextField = new TextField(String.valueOf(valorMaximoActual));
+//
+//        GridPane grid = new GridPane();
+//        grid.setHgap(10);
+//        grid.setVgap(10);
+//        grid.add(new Label("Mínimo:"), 0, 0);
+//        grid.add(minTextField, 1, 0);
+//        grid.add(new Label("Máximo:"), 0, 1);
+//        grid.add(maxTextField, 1, 1);
+//
+//        dialog.getDialogPane().setContent(grid);
+//
+//        // Convertir la entrada del usuario en un par de strings
+//        dialog.setResultConverter(dialogButton -> {
+//            if (dialogButton == okButtonType) {
+//                return new Pair<>(minTextField.getText(), maxTextField.getText());
+//            }
+//            return null;
+//        });
+//
+//        dialog.getDialogPane().setContent(grid);
+//
+//        // Obtiene los valores cuando se presiona "OK"
+//        dialog.setResultConverter(dialogButton -> {
+//            return new Pair<>(minTextField.getText(), maxTextField.getText());
+//        });
+//
+//        // Muestra el cuadro de diálogo y procesa la respuesta
+//        Optional<Pair<String, String>> result = dialog.showAndWait();
+//
+//        result.ifPresent(pair -> {
+//            System.out.println("Min: " + pair.getKey() + ", Max: " + pair.getValue());
+//            // Aquí puedes asignar los valores obtenidos a tus atributos minAño y maxAño, por ejemplo:
+//            minAño = Integer.parseInt(pair.getKey());
+//            maxAño = Integer.parseInt(pair.getValue());
+//        });
+////        
+////        dialog.setContentText("Min:");
+////        dialog.setContentText("Max:");
+////
+////        Optional<String> result = dialog.showAndWait();
+////        result.ifPresent(rango -> {
+////            String[] valores = rango.split("-");
+////            if (valores.length == 2) {
+////                try {
+////                    double min = Double.parseDouble(valores[0].trim());
+////                    double max = Double.parseDouble(valores[1].trim());
+////                    callback.accept(min, max);
+////                } catch (NumberFormatException e) {
+////                    Alert alert = new Alert(Alert.AlertType.ERROR, "Valores inválidos");
+////                    alert.show();
+////                }
+////            }
+////        });
+//    }
 
     private void mostrarVehiculos(ArrayList<Vehiculo> vehiculos) {
         hvehi.getChildren().clear();

@@ -15,22 +15,45 @@ import java.util.ArrayList;
  */
 public class App extends Application {
 
+//    private static Scene scene;
+//
+//    @Override
+//    public void start(Stage stage) throws IOException {
+//        scene = new Scene(loadFXML("inicio"), 640, 480);
+//        stage.setScene(scene);
+//        stage.show();
+//    }
+//
+//    public static void setRoot(String fxml) throws IOException {
+//        scene.setRoot(loadFXML(fxml));
+//    }
+//
+//    private static Parent loadFXML(String fxml) throws IOException {
+//        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
+//        return fxmlLoader.load();
+//    }
     private static Scene scene;
+    private static Stage st;
 
     @Override
     public void start(Stage stage) throws IOException {
-        scene = new Scene(loadFXML("inicio"), 640, 480);
+        st = stage;
+        scene = new Scene(loadFXML("cartelera").load(), 640, 480);
         stage.setScene(scene);
         stage.show();
     }
 
-    public static void setRoot(String fxml) throws IOException {
-        scene.setRoot(loadFXML(fxml));
+    static void setRoot(String fxml) throws IOException {
+        scene.setRoot(loadFXML(fxml).load());
+    }
+    
+    public static void setScene(Scene sc) throws IOException {
+        st.setScene(sc);
     }
 
-    private static Parent loadFXML(String fxml) throws IOException {
+    public static FXMLLoader loadFXML(String fxml) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
-        return fxmlLoader.load();
+        return fxmlLoader;
     }
     
     

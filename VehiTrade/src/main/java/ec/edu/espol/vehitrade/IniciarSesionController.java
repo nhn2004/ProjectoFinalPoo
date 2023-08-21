@@ -13,7 +13,9 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
@@ -49,7 +51,23 @@ public class IniciarSesionController implements Initializable {
             Usuario u = Usuario.verificarUsuario( correo.getText(), contraseña.getText());
             Alert a= new Alert(Alert.AlertType.INFORMATION,"Usuario Correcto");
             a.show();
-            App.setRoot("opciones");
+            try {
+                FXMLLoader loader = App.loadFXML("opciones");
+                Scene sc = new Scene(loader.load(),640,480);
+                OpcionesController controlador = loader.getController();
+                controlador.setUsuario(u);
+                App.setScene(sc);
+//                Stage old = (Stage)b.getScene().getWindow();
+//                old.close();
+//                Stage st = new Stage();
+//                st.setScene(sc);
+//                st.show();
+                
+            } catch (IOException ex) {
+                Alert b = new Alert(Alert.AlertType.ERROR,"Archivo no encontrado");
+                b.show();
+            }
+            
         } catch (DigitosInvalidos ex) {
             Alert a= new Alert(Alert.AlertType.ERROR,ex.getMessage());
             a.show();
@@ -61,33 +79,16 @@ public class IniciarSesionController implements Initializable {
 
     
 
-    private void switchToPaginaPrincipal(ActionEvent event) throws IOException {
-        App.setRoot("inicio");
-    }
 
-    @FXML
-    private void ingresarDatos(MouseEvent event) {
-        
-    }
+//    @FXML
+//    private void ingresarDatos(MouseEvent event) {
+//        
+//    }
 
     @FXML
     private void switchToInicio(ActionEvent event) throws IOException {
         App.setRoot("inicio");
     }
 
-    @FXML
-    private void switchToInicio(MouseEvent event) {
-    }
-
-    private void iniciarSesion(MouseEvent event) throws IOException {
-        try {
-            Usuario u = Usuario.verificarUsuario( correo.getText(), contraseña.getText());
-//            Alert a= new Alert(Alert.AlertType.INFORMATION,"Usuario Correcto");
-//            a.show();
-              App.setRoot("opciones");
-        } catch (DigitosInvalidos ex) {
-            Alert a= new Alert(Alert.AlertType.ERROR,ex.getMessage());
-            a.show();
-        }
-    }
+   
 }
