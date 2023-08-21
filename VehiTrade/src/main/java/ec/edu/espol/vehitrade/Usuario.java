@@ -143,7 +143,7 @@ public class Usuario implements Saveable,Serializable {
             if ((u.getCorreoElectronico().equals(correo)))
                 return true;   
         }
-        throw new DigitosInvalidos("El usuario no existe");
+        throw new DigitosInvalidos("");
     }
     
     

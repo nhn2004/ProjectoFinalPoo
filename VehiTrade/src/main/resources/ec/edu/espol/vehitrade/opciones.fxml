@@ -19,15 +19,16 @@
    <bottom>
       <GridPane prefHeight="184.0" prefWidth="600.0" BorderPane.alignment="CENTER">
         <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="307.199951171875" minWidth="10.0" prefWidth="300.79998779296875" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="307.199951171875" minWidth="10.0" prefWidth="280.8" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="307.199951171875" minWidth="10.0" prefWidth="120.80000000000001" />
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="360.0" minWidth="10.0" prefWidth="299.20001220703125" />
         </columnConstraints>
         <rowConstraints>
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Button mnemonicParsing="false" onMouseClicked="#switchToRegistrarVehiculo" prefHeight="51.0" prefWidth="106.0" text="Registrar" GridPane.halignment="CENTER" />
-            <Button mnemonicParsing="false" onMouseClicked="#switchToBuscarVehiculo" prefHeight="50.0" prefWidth="100.0" text="Buscar" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
+            <Button mnemonicParsing="false" onMouseClicked="#switchToRegistrarVehiculo" prefHeight="51.0" prefWidth="106.0" text="Registrar" GridPane.halignment="RIGHT" />
+            <Button mnemonicParsing="false" onMouseClicked="#switchToBuscarVehiculo" prefHeight="50.0" prefWidth="100.0" text="Buscar" GridPane.columnIndex="2" GridPane.halignment="LEFT" />
          </children>
       </GridPane>
    </bottom>

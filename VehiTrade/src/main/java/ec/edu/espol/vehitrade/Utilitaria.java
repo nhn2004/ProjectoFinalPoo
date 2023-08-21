@@ -27,7 +27,7 @@ import java.util.Scanner;
  *
  * @author Dom
  */
-class Utilitaria {
+public class Utilitaria {
 //    
     public static int nextId(String nombreArchivo){
         int id=0;

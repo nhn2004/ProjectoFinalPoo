@@ -21,6 +21,7 @@ import javafx.scene.input.MouseEvent;
  */
 public class RegistrarVehiculoController implements Initializable {
 
+    @FXML
     private TextField placa;
     @FXML
     private TextField modelo;
@@ -28,24 +29,21 @@ public class RegistrarVehiculoController implements Initializable {
     private TextField marca;
     @FXML
     private TextField tipoMotor;
+    @FXML
     private TextField año;
+    @FXML
     private TextField recorrido;
     @FXML
     private TextField color;
     @FXML
     private TextField tipoCombustible;
+    @FXML
     private TextField precio;
-    @FXML
     private TextField añoInicio;
-    @FXML
     private TextField recorridoInicio;
-    @FXML
     private TextField precioInicio;
-    @FXML
     private TextField añoFinal;
-    @FXML
     private TextField recorridoFInal;
-    @FXML
     private TextField precioFinal;
 
     /**
@@ -56,6 +54,7 @@ public class RegistrarVehiculoController implements Initializable {
         // TODO
     }    
 
+    @FXML
     private void registrarVehiculo(MouseEvent event) {
         Vehiculo v= new Vehiculo(placa.getText(),modelo.getText(),marca.getText(),tipoMotor.getText(),Integer.parseInt(año.getText()),Double.parseDouble(recorrido.getText()),color.getText(),tipoCombustible.getText(),Double.parseDouble(precio.getText()));
         try {
@@ -79,10 +78,15 @@ public class RegistrarVehiculoController implements Initializable {
     private void switchToInicio(MouseEvent event) {
     }
 
-    @FXML
     private void buscarVehiculo(MouseEvent event) {
         ArrayList<Vehiculo> vehiculos = Vehiculo.readListSer();
-        ArrayList<Vehiculo> vehFiltrados = Utilitaria.filtrarVehiculos(vehiculos, Double.parseDouble(recorridoInicio.getText()), Double.parseDouble(recorridoFInal.getText()), Integer.parseInt(añoInicio.getText()), Integer.parseInt(añoFinal.getText()), Double.parseDouble(precioInicio.getText()), Double.parseDouble(precioFinal.getText()));
+        ArrayList<Vehiculo> vehFiltrados = Utilitaria.filtrarVehiculos(vehiculos, 
+                Double.parseDouble(recorridoInicio.getText()),
+                Double.parseDouble(recorridoFInal.getText()),
+                Integer.parseInt(añoInicio.getText()),
+                Integer.parseInt(añoFinal.getText()), 
+                Double.parseDouble(precioInicio.getText()), 
+                Double.parseDouble(precioFinal.getText()));
         Alert a = new Alert(Alert.AlertType.INFORMATION, vehFiltrados.toString());
         a.show(); 
     }

@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.PrintWriter;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -20,7 +21,7 @@ import java.util.Scanner;
  *
  * @author Dom
  */
-public class Vehiculo implements Saveable {
+public class Vehiculo implements Saveable,Serializable {
     private String placa;
     private String modelo;
     private String marca;
@@ -163,11 +164,22 @@ public class Vehiculo implements Saveable {
         throw new DigitosInvalidos("El usuario no existe");
     }
     
-     public static void saveVehiculo(ArrayList<Vehiculo> vehiculos){
-            try(ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("VehiculoSer.txt"))){
+      public static void saveVehiculo(Vehiculo v){
+            ArrayList<Vehiculo> vehiculos = Vehiculo.readListSer(); 
+            vehiculos.add(v);
+            try(ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("UsuarioSer.txt"))){
                 out.writeObject(vehiculos);
             } catch(IOException e){ }
+        }
+      
+     public static void saveListSer(ArrayList<Vehiculo> vehiculos){
+            try(ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("VehiculoSer.txt"))){
+                out.writeObject(vehiculos);
+            } catch(IOException e){ 
+                System.out.println("No se va a guardar la lista xd");
+            }
     }
+     
      
      
      public static ArrayList<Vehiculo> readListSer(){

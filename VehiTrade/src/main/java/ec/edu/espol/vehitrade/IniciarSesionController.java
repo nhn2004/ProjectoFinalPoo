@@ -32,9 +32,9 @@ public class IniciarSesionController implements Initializable {
     @FXML
     private TextField contraseña;
     @FXML
-    private Button ingresar;
-    @FXML
     private Button regresar;
+    @FXML
+    private Button ingresar;
     /**
      * Initializes the controller class.
      */
@@ -45,11 +45,10 @@ public class IniciarSesionController implements Initializable {
 
     @FXML
     private void verificar(MouseEvent event) throws IOException {
-        
         try {
             Usuario u = Usuario.verificarUsuario( correo.getText(), contraseña.getText());
-//            Alert a= new Alert(Alert.AlertType.INFORMATION,"Usuario Correcto");
-//            a.show();
+            Alert a= new Alert(Alert.AlertType.INFORMATION,"Usuario Correcto");
+            a.show();
               App.setRoot("opciones");
         } catch (DigitosInvalidos ex) {
             Alert a= new Alert(Alert.AlertType.ERROR,ex.getMessage());
@@ -75,5 +74,17 @@ public class IniciarSesionController implements Initializable {
 
     @FXML
     private void switchToInicio(MouseEvent event) {
+    }
+
+    private void iniciarSesion(MouseEvent event) throws IOException {
+        try {
+            Usuario u = Usuario.verificarUsuario( correo.getText(), contraseña.getText());
+//            Alert a= new Alert(Alert.AlertType.INFORMATION,"Usuario Correcto");
+//            a.show();
+              App.setRoot("opciones");
+        } catch (DigitosInvalidos ex) {
+            Alert a= new Alert(Alert.AlertType.ERROR,ex.getMessage());
+            a.show();
+        }
     }
 }
