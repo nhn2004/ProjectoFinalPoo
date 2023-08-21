@@ -49,8 +49,9 @@ public class App extends Application {
         lista.add(u1);
         lista.add(u2);
         lista.add(u3);
-        System.out.println(lista);
-        Usuario.saveListSer(lista);
+        //System.out.println(lista);
+        //Usuario.saveListSer(lista);
+        System.out.println(Usuario.readListSer());
 //        IniciarSesionController controlador= new IniciarSesionController();
 //        controlador.setLista(lista);
         

@@ -99,8 +99,8 @@ public class Usuario implements Saveable,Serializable {
         } 
         catch(Exception e){
           }
-
     }
+
     public static void saveListSer(ArrayList<Usuario> lista){
         try(ObjectOutputStream output= new ObjectOutputStream(new FileOutputStream("UsuarioSer.txt"));){
             output.writeObject(lista);
@@ -112,12 +112,22 @@ public class Usuario implements Saveable,Serializable {
         try(ObjectInputStream input= new ObjectInputStream(new FileInputStream("UsuarioSer.txt"));){
             lista = (ArrayList<Usuario>)input.readObject();
         } catch(IOException ioE){
-            
+            System.out.println("No se pudo abrir");
         } catch (ClassNotFoundException cE){
-            
+            System.out.println("No se encontró la clase");
         }
         return lista;
-    }
+    }   
+    
+    public static void saveUser(Usuario u){
+            ArrayList<Usuario> usuarios = Usuario.readListSer(); 
+            usuarios.add(u);
+            try(ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("UsuarioSer.txt"))){
+                out.writeObject(usuarios);
+            } catch(IOException e){ }
+        }
+    
+    
     public static Usuario verificarUsuario(String correo,String contraseña) throws DigitosInvalidos{
         ArrayList<Usuario> lista = Usuario.readListSer();
         for (Usuario u:lista){
@@ -127,23 +137,14 @@ public class Usuario implements Saveable,Serializable {
         throw new DigitosInvalidos("Credenciales Incorrectas");
     }
     
-//    public static boolean validarUsuario(String correo,String contraseña){
-//        ArrayList<Usuario> lista = Usuario.readListSer();
-//        boolean validacionCorreo= false;
-//        boolean validacionClave= false;
-//        for (Usuario u:lista){
-//            if (u.getCorreoElectronico().equals(correo)){
-//                validacionCorreo=true;
-////                String clave=Usuario.buscarClave("UsuarioSer.txt", correo);
-//                if (u.getClave().equals(contraseña)){
-//                    validacionClave=true;
-//                }
-//            }
-//        }
-//
-//        return validacionCorreo&&validacionClave;
-//    }
-//    
+     public  static boolean verificarCorreo(String correo) throws DigitosInvalidos{
+        ArrayList<Usuario> lista = Usuario.readListSer();
+        for (Usuario u:lista){
+            if ((u.getCorreoElectronico().equals(correo)))
+                return true;   
+        }
+        throw new DigitosInvalidos("El usuario no existe");
+    }
     
     
      public static String buscarClave(String correoElectronico){

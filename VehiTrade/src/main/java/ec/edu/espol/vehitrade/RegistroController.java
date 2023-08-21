@@ -10,6 +10,7 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
@@ -46,6 +47,17 @@ public class RegistroController implements Initializable {
 
     @FXML
     private void ingresarDatos(MouseEvent event) {
+        Usuario u = new Usuario(nombre.getText(), apellido.getText(), organizacion.getText(), correo.getText(), contraseña.getText());
+        try {
+            Usuario.verificarCorreo(correo.getText());
+            Alert a = new Alert(Alert.AlertType.ERROR, "Este usuario ya está registrado");
+            a.show();
+            
+        } catch (DigitosInvalidos ex) {
+            Usuario.saveUser(u);
+            Alert a = new Alert(Alert.AlertType.CONFIRMATION, "Se ha registrado correctamente");
+            a.show();       
+        }
     }
 
     @FXML
