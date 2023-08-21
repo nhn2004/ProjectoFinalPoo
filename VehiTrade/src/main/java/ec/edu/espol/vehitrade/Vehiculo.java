@@ -33,15 +33,17 @@ public class Vehiculo implements Saveable,Serializable {
     private double precio;
     private int idVendedor;
     private Vendedor vendedor;
-    ArrayList<Oferta> ofertas;
+    private ArrayList<Oferta> ofertas;
+    private String tipoVehiculo;
     
     public Vehiculo(){
         
     }
 
-    public Vehiculo(String placa, String modelo, String marca, String tipoMotor, 
+    public Vehiculo(String tV,String placa, String modelo, String marca, String tipoMotor, 
             int año, double recorrido, String color, String tipoCosmbustible, 
             double precio, int idVendedor) {
+        this.tipoVehiculo=tV;
         this.placa = placa;
         this.modelo = modelo;
         this.marca = marca;
@@ -55,9 +57,10 @@ public class Vehiculo implements Saveable,Serializable {
         this.ofertas = new ArrayList<>(); 
         
     }
-    public Vehiculo(String placa, String modelo, String marca, String tipoMotor, 
+    public Vehiculo(String tV,String placa, String modelo, String marca, String tipoMotor, 
             int año, double recorrido, String color, String tipoCosmbustible, 
             double precio) {
+        this.tipoVehiculo=tV;
         this.placa = placa;
         this.modelo = modelo;
         this.marca = marca;
@@ -123,6 +126,14 @@ public class Vehiculo implements Saveable,Serializable {
 
     public void setVendedor(Vendedor vendedor) {
         this.vendedor = vendedor;
+    }
+
+    public String getTipoVehiculo() {
+        return tipoVehiculo;
+    }
+
+    public void setTipoVehiculo(String tipoVehiculo) {
+        this.tipoVehiculo = tipoVehiculo;
     }
     
     

@@ -56,7 +56,7 @@ public class RegistrarVehiculoController implements Initializable {
 
     @FXML
     private void registrarVehiculo(MouseEvent event) {
-        Vehiculo v= new Vehiculo(placa.getText(),modelo.getText(),marca.getText(),tipoMotor.getText(),Integer.parseInt(año.getText()),Double.parseDouble(recorrido.getText()),color.getText(),tipoCombustible.getText(),Double.parseDouble(precio.getText()));
+        Vehiculo v= new Vehiculo("Auto",placa.getText(),modelo.getText(),marca.getText(),tipoMotor.getText(),Integer.parseInt(año.getText()),Double.parseDouble(recorrido.getText()),color.getText(),tipoCombustible.getText(),Double.parseDouble(precio.getText()));
         try {
             Vehiculo.verificarPlaca(placa.getText());
             Alert a = new Alert(Alert.AlertType.ERROR, "Este vehiculo ya está registrado");

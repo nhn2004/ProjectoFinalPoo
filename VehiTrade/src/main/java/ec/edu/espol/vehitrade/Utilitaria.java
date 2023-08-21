@@ -196,7 +196,41 @@ public class Utilitaria {
         return vehFiltrados;
         
       }
+    public static ArrayList<Vehiculo> filtrarAño(ArrayList<Vehiculo> vehiculos, double añoInicio, double añoFin){
+        ArrayList<Vehiculo> vehFiltrados = new ArrayList<>();
+        for (Vehiculo veh: vehiculos){
+            if(veh.getAño()<=añoFin && veh.getAño()>=añoInicio )
+                vehFiltrados.add(veh);     
+        }
+        return vehFiltrados;
+    }
     
+    public static ArrayList<Vehiculo> filtrarRecorrido(ArrayList<Vehiculo> vehiculos, double añoInicio, double añoFin){
+        ArrayList<Vehiculo> vehFiltrados = new ArrayList<>();
+        for (Vehiculo veh: vehiculos){
+            if(veh.getAño()<=añoFin && veh.getAño()>=añoInicio )
+                vehFiltrados.add(veh);     
+        }
+        return vehFiltrados;
+    }
+    
+    public static ArrayList<Vehiculo> filtrarPrecio(ArrayList<Vehiculo> vehiculos, double añoInicio, double añoFin){
+        ArrayList<Vehiculo> vehFiltrados = new ArrayList<>();
+        for (Vehiculo veh: vehiculos){
+            if(veh.getAño()<=añoFin && veh.getAño()>=añoInicio )
+                vehFiltrados.add(veh);     
+        }
+        return vehFiltrados;
+    }
+    
+    public static ArrayList<Vehiculo> filtrarTipoVehiculo(ArrayList<Vehiculo> vehiculos, String tipo){
+        ArrayList<Vehiculo> vehFiltrados = new ArrayList<>();
+        for (Vehiculo veh: vehiculos){
+            if(veh.getTipoVehiculo().equals(tipo) )
+                vehFiltrados.add(veh);     
+        }
+        return vehFiltrados;
+    }
 //   
 //    
 //    public static void eliminarVehiculo(String archivo, String placa) {
