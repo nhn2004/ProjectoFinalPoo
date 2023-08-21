@@ -53,7 +53,10 @@ public class IniciarSesionController implements Initializable {
         } catch (DigitosInvalidos ex) {
             Alert a= new Alert(Alert.AlertType.ERROR,ex.getMessage());
             a.show();
-        } 
+        } catch(ClassCastException cce){
+            Alert a= new Alert(Alert.AlertType.ERROR,"loquito");
+            a.show();
+        }
     }
 
     

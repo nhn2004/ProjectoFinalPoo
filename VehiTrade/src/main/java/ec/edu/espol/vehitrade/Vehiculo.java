@@ -167,7 +167,7 @@ public class Vehiculo implements Saveable,Serializable {
       public static void saveVehiculo(Vehiculo v){
             ArrayList<Vehiculo> vehiculos = Vehiculo.readListSer(); 
             vehiculos.add(v);
-            try(ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("UsuarioSer.txt"))){
+            try(ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("VehiculoSer.txt"))){
                 out.writeObject(vehiculos);
             } catch(IOException e){ }
         }

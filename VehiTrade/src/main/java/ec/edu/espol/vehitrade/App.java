@@ -49,8 +49,8 @@ public class App extends Application {
         lista.add(u1);
         lista.add(u2);
         lista.add(u3);
-        //System.out.println(lista);
-        //Usuario.saveListSer(lista);
+        System.out.println(lista);
+        Usuario.saveListSer(lista);
        // System.out.println(Usuario.readListSer());
 //        IniciarSesionController controlador= new IniciarSesionController();
 //        controlador.setLista(lista);
@@ -60,7 +60,7 @@ public class App extends Application {
         vvv.add(v);
         vvv.add(v2);
         Vehiculo.saveListSer(vvv);
-        //Vehiculo.saveVehiculo(v2);
+        Vehiculo.saveVehiculo(v2);
         ArrayList<Vehiculo> listaV=Vehiculo.readListSer();
         System.out.println(listaV);
         

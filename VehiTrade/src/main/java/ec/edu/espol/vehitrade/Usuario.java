@@ -115,9 +115,7 @@ public class Usuario implements Saveable,Serializable {
             System.out.println("No se pudo abrir");
         } catch (ClassNotFoundException ex) { 
             System.out.println("No se encontró");
-        } catch(ClassCastException cce){
-            System.out.println("Eres un loquito");
-        }
+        } 
         return lista;
     }   
     
