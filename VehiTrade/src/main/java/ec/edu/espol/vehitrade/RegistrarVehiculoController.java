@@ -6,6 +6,7 @@ package ec.edu.espol.vehitrade;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -80,7 +81,10 @@ public class RegistrarVehiculoController implements Initializable {
 
     @FXML
     private void buscarVehiculo(MouseEvent event) {
-        //METODO FILTRAR
+        ArrayList<Vehiculo> vehiculos = Vehiculo.readListSer();
+        ArrayList<Vehiculo> vehFiltrados = Utilitaria.filtrarVehiculos(vehiculos, Double.parseDouble(recorridoInicio.getText()), Double.parseDouble(recorridoFInal.getText()), Integer.parseInt(añoInicio.getText()), Integer.parseInt(añoFinal.getText()), Double.parseDouble(precioInicio.getText()), Double.parseDouble(precioFinal.getText()));
+        Alert a = new Alert(Alert.AlertType.INFORMATION, vehFiltrados.toString());
+        a.show(); 
     }
     
 }

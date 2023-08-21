@@ -35,7 +35,7 @@ public class App extends Application {
     
     
     public static void main(String[] args) {
-        launch();
+        //launch();
         Usuario u= new Usuario("Carlos Luis","Galarza Aveces",
                 "ESPOL","clgal@espol.edu.ec","CarlosCarlos2004");
         Usuario u1= new Usuario("Nahin Jaimito","Cevallos Tomala",
@@ -54,6 +54,14 @@ public class App extends Application {
         System.out.println(Usuario.readListSer());
 //        IniciarSesionController controlador= new IniciarSesionController();
 //        controlador.setLista(lista);
+        Vehiculo v = new Vehiculo("GBO-8618","Aveo","Chevrolet","Grande",2001,2880.2,"Amarillo","Diesel", 10564.3);
+        Vehiculo v2 = new Vehiculo("GSI-4423","Grand Vitara","Suzuki","MuyGrande",2020,3430.2,"Vino","Diesel", 90564.3);
+        ArrayList<Vehiculo> vvv = new ArrayList<>();
+        vvv.add(v);
+        vvv.add(v2);
+        Vehiculo.saveVehiculo(vvv);
+        //Vehiculo.saveVehiculo(v2);
+        System.out.println(Vehiculo.readListSer());
         
     }
         

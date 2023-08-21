@@ -179,24 +179,24 @@ class Utilitaria {
 //          
 //            
 //    }
-//    
-//    public static ArrayList<Vehiculo> filtrarVehiculos( ArrayList<Vehiculo> vehiculos,double recorridoInicio, float recorridoFin, 
-//        int añoInicio, long añoFin, double precioInicio, float precioFin){
-//        ArrayList<Vehiculo> vehFiltrados = new ArrayList<>();
-//        for (Vehiculo v: vehiculos){
-//            if(v.getRecorrido()<= recorridoFin &&
-//                v.getRecorrido()>= recorridoInicio &&
-//                v.getAño()<= añoFin &&
-//                v.getAño()>= añoInicio &&
-//                v.getPrecio()<= precioFin &&
-//                v.getPrecio()>= precioInicio)
-//                vehFiltrados.add(v);
-//               
-//        }
-//        return vehFiltrados;
-//        
-//      }
-//    
+    
+    public static ArrayList<Vehiculo> filtrarVehiculos( ArrayList<Vehiculo> vehiculos,double recorridoInicio, double recorridoFin, 
+        int añoInicio, int añoFin, double precioInicio, double precioFin){
+        ArrayList<Vehiculo> vehFiltrados = new ArrayList<>();
+        for (Vehiculo v: vehiculos){
+            if(v.getRecorrido()<= recorridoFin &&
+                v.getRecorrido()>= recorridoInicio &&
+                v.getAño()<= añoFin &&
+                v.getAño()>= añoInicio &&
+                v.getPrecio()<= precioFin &&
+                v.getPrecio()>= precioInicio)
+                vehFiltrados.add(v);
+               
+        }
+        return vehFiltrados;
+        
+      }
+    
 //   
 //    
 //    public static void eliminarVehiculo(String archivo, String placa) {
