@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ec.edu.espol.vehitrade.OpcionesController">
+   <top>
+      <Label prefHeight="137.0" prefWidth="242.0" text="¡Bienvenido!" BorderPane.alignment="CENTER">
+         <font>
+            <Font name="Arial Black" size="35.0" />
+         </font></Label>
+   </top>
+   <bottom>
+      <GridPane prefHeight="184.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="307.199951171875" minWidth="10.0" prefWidth="300.79998779296875" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="360.0" minWidth="10.0" prefWidth="299.20001220703125" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Button mnemonicParsing="false" onMouseClicked="#switchToRegistrarVehiculo" prefHeight="51.0" prefWidth="106.0" text="Registrar" GridPane.halignment="CENTER" />
+            <Button mnemonicParsing="false" onMouseClicked="#switchToBuscarVehiculo" prefHeight="50.0" prefWidth="100.0" text="Buscar" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
+         </children>
+      </GridPane>
+   </bottom>
+   <center>
+      <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label alignment="CENTER" layoutX="-2.0" layoutY="31.0" prefHeight="17.0" prefWidth="600.0" text="Seleccione que desea hacer el día de hoy">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+   </center>
+</BorderPane>

@@ -44,17 +44,20 @@ public class IniciarSesionController implements Initializable {
     }    
 
     @FXML
-    private void verificar(MouseEvent event) {
+    private void verificar(MouseEvent event) throws IOException {
         
         try {
             Usuario u = Usuario.verificarUsuario( correo.getText(), contraseña.getText());
-            Alert a= new Alert(Alert.AlertType.INFORMATION,"Usuario Correcto");
-            a.show();
+//            Alert a= new Alert(Alert.AlertType.INFORMATION,"Usuario Correcto");
+//            a.show();
+              App.setRoot("opciones");
         } catch (DigitosInvalidos ex) {
             Alert a= new Alert(Alert.AlertType.ERROR,ex.getMessage());
             a.show();
         }
     }
+
+    
 
     private void switchToPaginaPrincipal(ActionEvent event) throws IOException {
         App.setRoot("inicio");
@@ -68,5 +71,9 @@ public class IniciarSesionController implements Initializable {
     @FXML
     private void switchToInicio(ActionEvent event) throws IOException {
         App.setRoot("inicio");
+    }
+
+    @FXML
+    private void switchToInicio(MouseEvent event) {
     }
 }

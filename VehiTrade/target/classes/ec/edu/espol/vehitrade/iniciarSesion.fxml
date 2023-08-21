@@ -68,7 +68,7 @@
                         <Font size="18.0" />
                      </font>
                      <graphic>
-                        <ImageView fitHeight="20.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="20.0" fitWidth="200.0" onMouseClicked="#switchToInicio" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@imagenes/regresar.png" />
                            </image>

@@ -5,8 +5,11 @@
 package ec.edu.espol.vehitrade;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -51,7 +54,21 @@ public class Vehiculo implements Saveable {
         this.ofertas = new ArrayList<>(); 
         
     }
-    
+    public Vehiculo(String placa, String modelo, String marca, String tipoMotor, 
+            int año, double recorrido, String color, String tipoCosmbustible, 
+            double precio) {
+        this.placa = placa;
+        this.modelo = modelo;
+        this.marca = marca;
+        this.tipoMotor = tipoMotor;
+        this.año = año;
+        this.recorrido = recorrido;
+        this.color = color;
+        this.tipoCosmbustible = tipoCosmbustible;
+        this.precio = precio;
+        this.ofertas = new ArrayList<>(); 
+        
+    }
 
 
     public int getIdVendedor() {
@@ -137,6 +154,35 @@ public class Vehiculo implements Saveable {
           System.out.println(e.getMessage()+"saveFileVehiculo");
         }
     }
+     public  static boolean verificarPlaca(String placa) throws DigitosInvalidos{
+        ArrayList<Vehiculo> lista = Vehiculo.readListSer();
+        for (Vehiculo v:lista){
+            if ((v.getPlaca().equals(placa)))
+                return true;   
+        }
+        throw new DigitosInvalidos("El usuario no existe");
+    }
+    
+     public static void saveVehiculo(Vehiculo v){
+            ArrayList<Vehiculo> vehiculos = Vehiculo.readListSer(); 
+            vehiculos.add(v);
+            try(ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("VehiculoSer.txt"))){
+                out.writeObject(vehiculos);
+            } catch(IOException e){ }
+    }
+     
+     
+     public static ArrayList<Vehiculo> readListSer(){
+        ArrayList<Vehiculo> lista= new ArrayList<>();
+        try(ObjectInputStream input= new ObjectInputStream(new FileInputStream("VehiculoSer.txt"));){
+            lista = (ArrayList<Vehiculo>)input.readObject();
+        } catch(IOException ioE){
+            System.out.println("No se pudo abrir");
+        } catch (ClassNotFoundException cE){
+            System.out.println("No se encontró la clase");
+        }
+        return lista;
+    }  
     
 //    public static ArrayList<Vehiculo> readFile(){
 //        ArrayList<Vehiculo> lV= new ArrayList<>();
