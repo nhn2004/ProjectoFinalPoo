@@ -113,8 +113,10 @@ public class Usuario implements Saveable,Serializable {
             lista = (ArrayList<Usuario>)input.readObject();
         } catch(IOException ioE){
             System.out.println("No se pudo abrir");
-        } catch (ClassNotFoundException cE){
-            System.out.println("No se encontró la clase");
+        } catch (ClassNotFoundException ex) { 
+            System.out.println("No se encontró");
+        } catch(ClassCastException cce){
+            System.out.println("Eres un loquito");
         }
         return lista;
     }   

@@ -49,11 +49,11 @@ public class IniciarSesionController implements Initializable {
             Usuario u = Usuario.verificarUsuario( correo.getText(), contraseña.getText());
             Alert a= new Alert(Alert.AlertType.INFORMATION,"Usuario Correcto");
             a.show();
-              App.setRoot("opciones");
+            App.setRoot("opciones");
         } catch (DigitosInvalidos ex) {
             Alert a= new Alert(Alert.AlertType.ERROR,ex.getMessage());
             a.show();
-        }
+        } 
     }
 
     
