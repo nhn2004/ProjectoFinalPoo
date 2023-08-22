@@ -39,38 +39,15 @@ public class IniciarSesionController implements Initializable {
     @FXML
     private void verificar(MouseEvent event) {
         try {
-            
             Usuario u = Usuario.verificarUsuario( correo.getText(), contraseña.getText());
-            
             SessionManager.getInstance().setUsuarioActual(u);
-//            try {
-//                App.setRoot("paginaUsuario");
-//            } catch (IOException ex) {
-//            }
-//            try {
-//                FXMLLoader loader = App.loadFXMM("misVehiculos");
-//                Parent root = loader.load();
-//                MisVehiculosController controller = loader.getController();
-//                controller.setUsuario(u);
-//                App.setScene(new Scene(root, 640, 480));
-//            } catch (IOException ex) {
-//                Alert b= new Alert(Alert.AlertType.INFORMATION,"ocurrio algo");
-//                b.show();
-//            }
             try {
                 App.setRoot("paginaUsuario");
-            } catch (IOException ex) {
-           
-            }
-            
-            
+            } catch (IOException ex) { }
         } catch (DigitosInvalidos ex) {
             Alert a= new Alert(Alert.AlertType.ERROR,ex.getMessage());
             a.show();
         }
-       
-        
-        
     }
 
 
