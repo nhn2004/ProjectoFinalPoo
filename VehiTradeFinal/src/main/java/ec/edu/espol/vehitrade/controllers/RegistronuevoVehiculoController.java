@@ -2,8 +2,15 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
  */
-package ec.edu.espol.vehitrade;
+package ec.edu.espol.vehitrade.controllers;
 
+import ec.edu.espol.vehitrade.App;
+import ec.edu.espol.vehitrade.model.Auto;
+import ec.edu.espol.vehitrade.model.Camioneta;
+import ec.edu.espol.vehitrade.model.ObjetoExistente;
+import ec.edu.espol.vehitrade.model.SessionManager;
+import ec.edu.espol.vehitrade.model.Usuario;
+import ec.edu.espol.vehitrade.model.Vehiculo;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -191,7 +198,7 @@ public class RegistronuevoVehiculoController implements Initializable {
     
     public void registroCamioneta(){
         registroAuto();
-        Text Traccion = new Text("Transmision:");
+        Text Traccion = new Text("Tracción:");
         Traccion.setFont(new Font(16));
         VBox.setMargin(Traccion, new Insets(20, 0, 0, 0));
         TextField traccion = new TextField();

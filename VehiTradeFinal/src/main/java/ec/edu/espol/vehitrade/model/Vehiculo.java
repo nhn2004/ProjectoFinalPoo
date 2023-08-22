@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package ec.edu.espol.vehitrade;
+package ec.edu.espol.vehitrade.model;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -179,7 +179,7 @@ public class Vehiculo implements Serializable {
     public static void verificarPlaca(String placa) throws ObjetoExistente{
         ArrayList<Vehiculo> veh = Vehiculo.readListSer();
         for (Vehiculo v:veh){
-            if ((v.getPlaca().equals(placa))){
+            if (v.getPlaca().equals(placa)){
                    throw new ObjetoExistente("Vehiculo ya Registrado");
             }
         } 
@@ -197,5 +197,11 @@ public class Vehiculo implements Serializable {
         Vehiculo.saveListSer(vehiculos);
     }
     
+    public static ArrayList<Vehiculo> quitarMisVehiculos(Usuario u){
+        ArrayList<Vehiculo> veh = Vehiculo.readListSer();
+        for (Vehiculo v: u.getVehiculos())
+            veh.remove(v);
+        return veh;
+    }
  
 }

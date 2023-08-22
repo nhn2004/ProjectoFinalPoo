@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package ec.edu.espol.vehitrade;
+package ec.edu.espol.vehitrade.model;
 
 import java.net.Authenticator;
 import java.net.PasswordAuthentication;
@@ -19,7 +19,7 @@ import javax.mail.internet.MimeMessage;
  *
  * @author Dom
  */
-class Utilitaria {
+public class Utilitaria {
     private static final String CORREO_ENVIO = "nhncevallos@gmail.com";
     private static final String CONTRASEÑA = "olbapqxbumuxutep";
 
@@ -61,19 +61,19 @@ class Utilitaria {
         return vehFiltrados;
     }
     
-    public static ArrayList<Vehiculo> filtrarRecorrido(ArrayList<Vehiculo> vehiculos, double añoInicio, double añoFin){
+    public static ArrayList<Vehiculo> filtrarRecorrido(ArrayList<Vehiculo> vehiculos, double recorridoInicio, double recorridoFin){
         ArrayList<Vehiculo> vehFiltrados = new ArrayList<>();
         for (Vehiculo veh: vehiculos){
-            if(veh.getAño()<=añoFin && veh.getAño()>=añoInicio )
+            if(veh.getRecorrido()<=recorridoFin && veh.getRecorrido()>=recorridoInicio )
                 vehFiltrados.add(veh);     
         }
         return vehFiltrados;
     }
     
-    public static ArrayList<Vehiculo> filtrarPrecio(ArrayList<Vehiculo> vehiculos, double añoInicio, double añoFin){
+    public static ArrayList<Vehiculo> filtrarPrecio(ArrayList<Vehiculo> vehiculos, double precioInicio, double precioFin){
         ArrayList<Vehiculo> vehFiltrados = new ArrayList<>();
         for (Vehiculo veh: vehiculos){
-            if(veh.getAño()<=añoFin && veh.getAño()>=añoInicio )
+            if(veh.getPrecio()<=precioFin && veh.getPrecio()>=precioInicio )
                 vehFiltrados.add(veh);     
         }
         return vehFiltrados;

@@ -6,4 +6,10 @@ module ec.edu.espol.vehitrade {
 
     opens ec.edu.espol.vehitrade to javafx.fxml;
     exports ec.edu.espol.vehitrade;
+    
+    opens ec.edu.espol.vehitrade.controllers to javafx.fxml;
+    exports ec.edu.espol.vehitrade.controllers;
+    
+    opens ec.edu.espol.vehitrade.model to javafx.fxml;
+    exports ec.edu.espol.vehitrade.model;
 }

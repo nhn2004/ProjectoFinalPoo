@@ -2,8 +2,13 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
  */
-package ec.edu.espol.vehitrade;
+package ec.edu.espol.vehitrade.controllers;
 
+import ec.edu.espol.vehitrade.App;
+import ec.edu.espol.vehitrade.model.SessionManager;
+import ec.edu.espol.vehitrade.model.Usuario;
+import ec.edu.espol.vehitrade.model.Vehiculo;
+import ec.edu.espol.vehitrade.model.Utilitaria;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -70,7 +75,7 @@ public class ComprarVehiculoController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         usuario=SessionManager.getInstance().getUsuarioActual();
-        vehiculos = Vehiculo.readListSer();
+        vehiculos = Vehiculo.quitarMisVehiculos(usuario);
         // TODO
         faño.selectedProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue) {
