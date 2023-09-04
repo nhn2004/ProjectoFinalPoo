@@ -197,11 +197,19 @@ public class Vehiculo implements Serializable {
         Vehiculo.saveListSer(vehiculos);
     }
     
-    public static ArrayList<Vehiculo> quitarMisVehiculos(Usuario u){
+    public static ArrayList<Vehiculo> quitarMisVehiculos(ArrayList<Vehiculo> vehiculos){
         ArrayList<Vehiculo> veh = Vehiculo.readListSer();
-        for (Vehiculo v: u.getVehiculos())
-            veh.remove(v);
+        Iterator<Vehiculo> iterator = veh.iterator();
+        while (iterator.hasNext()) {
+            Vehiculo v = iterator.next();
+            for (Vehiculo vehhh: vehiculos){
+                if (v.getPlaca().equals(vehhh.getPlaca()) ) {
+                    iterator.remove(); // Eliminamos el elemento actual de la lista
+                }
+            }
+        }
         return veh;
+        
     }
  
 }

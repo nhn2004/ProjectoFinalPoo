@@ -75,7 +75,7 @@ public class ComprarVehiculoController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         usuario=SessionManager.getInstance().getUsuarioActual();
-        vehiculos = Vehiculo.quitarMisVehiculos(usuario);
+        vehiculos = Vehiculo.quitarMisVehiculos(SessionManager.getInstance().getUsuarioActual().getVehiculos());
         // TODO
         faño.selectedProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue) {

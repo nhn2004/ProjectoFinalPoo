@@ -211,4 +211,7 @@ public class Usuario implements Serializable {
         this.ofertas.remove(o);
         
     }
+    
+    
+    
 }
