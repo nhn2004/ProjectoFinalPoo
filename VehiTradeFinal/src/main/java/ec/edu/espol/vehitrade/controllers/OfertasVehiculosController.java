@@ -19,15 +19,11 @@ import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
-import javafx.stage.Stage;
-import javax.mail.MessagingException;
 
 /**
  * FXML Controller class
@@ -93,7 +89,8 @@ public class OfertasVehiculosController implements Initializable {
         
         Button aceptar = new Button("Seleccionar");
                 aceptar.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent t) -> {
-                    
+                    Alert a = new Alert(Alert.AlertType.INFORMATION, "Enviando correo electrónico. Espere, por favor.");
+                    a.show();
                     try{
                         String mensaje= "Hola soy "+usuario.getNombre()+",\n"+"Es un placer hacer negocios contigo, mi "+vehiculo.getMarca()+" "+vehiculo.getModelo()+" pronto será tuyo, enviame un correo a "+usuario.getCorreoElectronico()+" para hablar";
                     

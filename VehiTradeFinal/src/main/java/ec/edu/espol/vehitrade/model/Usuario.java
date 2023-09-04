@@ -139,8 +139,6 @@ public class Usuario implements Serializable {
     }
     public static Usuario verificarUsuario(String correo,String contraseña) throws DigitosInvalidos{
         ArrayList<Usuario> lista = Usuario.readListSer();
-        Alert a = new Alert(Alert.AlertType.INFORMATION,lista.toString());
-        a.show();
         for (Usuario u:lista){
             if ((u.getCorreoElectronico().equals(correo))&&(u.getClave().equals(contraseña))){
                 u.setVehiculos(u.vincularVehiculoUsuario());

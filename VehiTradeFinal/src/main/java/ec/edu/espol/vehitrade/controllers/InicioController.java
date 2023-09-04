@@ -46,8 +46,6 @@ public class InicioController implements Initializable {
     @FXML
     private void iniciarSesion(MouseEvent event) {
         ArrayList<Usuario> lista= Usuario.readListSer();
-        Alert a = new Alert(Alert.AlertType.INFORMATION, lista.toString());
-        a.show();
         try {
             App.setRoot("iniciarSesion");
         } catch (IOException ex) {
